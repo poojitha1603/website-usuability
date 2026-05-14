@@ -40,6 +40,8 @@ A full-stack web application that analyzes any website's usability and performan
 https://website-usuability.onrender.com
 
 ## 📁 Project Structure
+
+```
 ai-website-usability-analyzer/
 ├── app.py
 ├── analyzer.py
@@ -47,3 +49,4 @@ ai-website-usability-analyzer/
 ├── requirements.txt
 └── templates/
     └── index.html
+```
