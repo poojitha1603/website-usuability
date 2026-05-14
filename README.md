@@ -21,7 +21,7 @@ A full-stack web application that analyzes any website's usability and performan
 ## 🚀 How to run locally
 
 1. Clone the repo
-   git clone https://github.com/your-username/your-repo-name.git
+   git clone [https://github.com/poojitha1603/website-usuability.git]
 
 2. Install dependencies
    pip install -r requirements.txt
