@@ -8,7 +8,7 @@ def extract_website_data(url):
         url = "https://" + url
 
     headers = {"User-Agent": "Mozilla/5.0 (compatible; UsabilityAnalyzer/1.0)"}
-    response = requests.get(url, timeout=15, headers=headers)
+    response = requests.get(url, timeout=10, headers=headers)
     response.raise_for_status()
 
     html = response.text
@@ -23,29 +23,8 @@ def extract_website_data(url):
     return html, cleaned_text, url
 
 def check_broken_links(html, base_url):
-    soup = BeautifulSoup(html, "html.parser")
-    links = soup.find_all("a", href=True)
-    broken = []
-    checked = 0
-    headers = {"User-Agent": "Mozilla/5.0 (compatible; UsabilityAnalyzer/1.0)"}
-
-    for link in links[:5]:  # reduced to 5 to avoid memory crash
-        href = link["href"]
-        if href.startswith("mailto:") or href.startswith("tel:") or href == "#":
-            continue
-        full_url = urljoin(base_url, href)
-        if not full_url.startswith("http"):
-            continue
-        try:
-            r = requests.head(full_url, timeout=3, headers=headers, allow_redirects=True)
-            if r.status_code >= 400:
-                broken.append({"url": full_url, "status": r.status_code})
-            checked += 1
-        except Exception:
-            broken.append({"url": full_url, "status": "Timeout/Error"})
-            checked += 1
-
-    return broken, checked
+    # Disabled on free tier to prevent memory crash
+    return [], 0
 
 def extract_seo_data(html, url):
     soup = BeautifulSoup(html, "html.parser")
